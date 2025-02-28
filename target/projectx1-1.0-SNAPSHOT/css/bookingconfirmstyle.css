@@ -1,34 +1,53 @@
-/* Booking Confirmation Page Styling */
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #36d1dc, #5b86e5);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Reset Styles */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
+/* Fullscreen Video Background */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Confirmation Container */
 .confirm-container {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.15); /* Transparent glass effect */
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     width: 400px;
+    backdrop-filter: blur(12px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
+/* Heading */
 h2 {
-    color: #333;
+    color: #fff;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
+/* Paragraph Styling */
 p {
     font-size: 18px;
-    color: #555;
+    color: #fff;
     margin-bottom: 10px;
 }
 
+/* Special Message */
 .message {
     font-size: 20px;
     color: #27ae60;
@@ -36,20 +55,21 @@ p {
     margin-top: 20px;
 }
 
+/* Cancel Button */
 .cancel-btn {
     width: 100%;
     background: #e74c3c;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
     font-size: 18px;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-weight: 600;
     margin-top: 20px;
 }
 
 .cancel-btn:hover {
     background: #c0392b;
 }
-

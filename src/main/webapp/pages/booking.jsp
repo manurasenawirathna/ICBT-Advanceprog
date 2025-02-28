@@ -12,9 +12,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Your Ride</title>
     <link rel="stylesheet" type="text/css" href="../css/bookingstyle.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- For Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+    <!-- Fullscreen Video Background -->
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="../videos/test889.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Booking Form -->
     <div class="booking-container">
         <h2>Enter Your Ride Details</h2>
         <form action="vehicle-selection.jsp" method="get">
@@ -29,5 +37,6 @@
             <button type="submit" class="next-btn">Next: Select Vehicle</button>
         </form>
     </div>
+
 </body>
 </html>

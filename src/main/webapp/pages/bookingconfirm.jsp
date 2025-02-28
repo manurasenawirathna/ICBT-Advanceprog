@@ -11,10 +11,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmed</title>
+
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="../css/bookingconfirmstyle.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for smooth effect -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body onload="generateDriverDetails()">
+
+    <!-- Fullscreen Video Background -->
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="../videos/test889.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Confirmation Box -->
     <div class="confirm-container">
         <h2>Your Driver is on the Way 🚖</h2>
         <p id="loading-text">Fetching Driver Details...</p>
@@ -34,7 +48,7 @@
         function generateDriverDetails() {
             setTimeout(function () {
                 $("#loading-text").hide();
-                $("#driver-info").fadeIn(); // Smooth reveal
+                $("#driver-info").fadeIn();
 
                 // Static driver details (can be dynamic later)
                 document.getElementById("driverName").innerText = "John Wick";
@@ -57,4 +71,3 @@
     </script>
 </body>
 </html>
-

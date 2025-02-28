@@ -1,28 +1,44 @@
-/* Modern, sleek booking page design */
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #36d1dc, #5b86e5);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Reset Styles */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Fullscreen Video Background */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Ensures video covers the entire screen */
+    z-index: -1; /* Sends video behind the booking form */
+}
+
+/* Booking Form Styling */
 .booking-container {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.15); /* Transparent effect */
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     width: 400px;
+    backdrop-filter: blur(12px); /* Adds a frosted glass effect */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
+/* Form Heading */
 h2 {
-    color: #333;
+    color: #fff;
     margin-bottom: 20px;
 }
 
+/* Input Group */
 .input-group {
     text-align: left;
     margin-bottom: 15px;
@@ -31,18 +47,27 @@ h2 {
 .input-group label {
     display: block;
     font-weight: bold;
-    color: #555;
+    color: #fff;
     margin-bottom: 5px;
 }
 
+/* Input Fields */
 .input-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 5px;
     font-size: 16px;
 }
 
+/* Placeholder Styling */
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Button Styling */
 .next-btn {
     width: 100%;
     background: #ff9800;
@@ -58,4 +83,3 @@ h2 {
 .next-btn:hover {
     background: #e68900;
 }
-

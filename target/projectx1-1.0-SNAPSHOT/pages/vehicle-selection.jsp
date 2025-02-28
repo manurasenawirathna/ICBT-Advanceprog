@@ -11,30 +11,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Vehicle</title>
+    
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" type="text/css" href="../css/vehiclestyle.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- For Icons -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for session storage -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
 </head>
 <body>
+
+    <!-- Fullscreen Video Background -->
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="../videos/test889.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Vehicle Selection Container -->
     <div class="vehicle-container">
         <h2>Select Your Vehicle</h2>
         <form onsubmit="saveTripDetails(event)">
             <div class="vehicle-options">
-                <label>
+                <label class="vehicle-card">
                     <input type="radio" name="vehicle" value="tuk" required>
-                    <i class="fas fa-motorcycle"></i> Tuk (LKR 30/km)
+                    <lord-icon src="https://cdn.lordicon.com/lwzsvzkp.json" trigger="hover"></lord-icon>
+                    <div class="vehicle-info">
+                        <span class="vehicle-name">Tuk (LKR 30/km)</span>
+                        <span class="vehicle-capacity">🚶‍♂️ 2</span>
+                    </div>
                 </label>
-                <label>
+
+                <label class="vehicle-card">
                     <input type="radio" name="vehicle" value="bike">
-                    <i class="fas fa-bicycle"></i> Bike (LKR 25/km)
+                    <lord-icon src="https://cdn.lordicon.com/nyzgaoal.json" trigger="hover"></lord-icon>
+                    <div class="vehicle-info">
+                        <span class="vehicle-name">Bike (LKR 25/km)</span>
+                        <span class="vehicle-capacity">🚶‍♂️ 1</span>
+                    </div>
                 </label>
-                <label>
+
+                <label class="vehicle-card">
                     <input type="radio" name="vehicle" value="car">
-                    <i class="fas fa-car"></i> Car (LKR 50/km)
+                    <lord-icon src="https://cdn.lordicon.com/grcrdebf.json" trigger="hover"></lord-icon>
+                    <div class="vehicle-info">
+                        <span class="vehicle-name">Car (LKR 50/km)</span>
+                        <span class="vehicle-capacity">🚶‍♂️ 4</span>
+                    </div>
                 </label>
-                <label>
+
+                <label class="vehicle-card">
                     <input type="radio" name="vehicle" value="van">
-                    <i class="fas fa-shuttle-van"></i> Mini Van (LKR 75/km)
+                    <lord-icon src="https://cdn.lordicon.com/zzjjvkam.json" trigger="hover"></lord-icon>
+                    <div class="vehicle-info">
+                        <span class="vehicle-name">Mini Van (LKR 75/km)</span>
+                        <span class="vehicle-capacity">🚶‍♂️ 5</span>
+                    </div>
                 </label>
             </div>
             <button type="submit" class="confirm-btn">Confirm Booking</button>
@@ -43,9 +75,9 @@
 
     <script>
         function saveTripDetails(event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault(); 
 
-            let passengerName = prompt("Enter Passenger Name:", "John Doe"); // Ask for name
+            let passengerName = prompt("Enter Passenger Name:", "John Doe"); 
             let selectedVehicle = document.querySelector('input[name="vehicle"]:checked');
             
             if (!selectedVehicle) {
@@ -54,22 +86,29 @@
             }
 
             let vehicleType = selectedVehicle.value;
-            let distance = sessionStorage.getItem("totalDistance") || "0"; // Retrieved from DistanceServlet
+            let distance = sessionStorage.getItem("totalDistance") || "0"; 
             let estimatedFare = calculateFare(vehicleType, distance);
 
-            // Store details in sessionStorage
             sessionStorage.setItem("passengerName", passengerName);
             sessionStorage.setItem("selectedVehicle", vehicleType);
             sessionStorage.setItem("estimatedFare", estimatedFare);
 
-            // Redirect to trip summary page
             window.location.href = "tripdetailreview.jsp";
         }
 
         function calculateFare(vehicle, distance) {
-            let rates = { "tuk": 30, "bike": 25, "car": 50, "van": 75 }; // Per km fare
+            let rates = { "tuk": 30, "bike": 25, "car": 50, "van": 75 };
             return (rates[vehicle] * parseFloat(distance)).toFixed(2);
         }
+
+        // Add black border to selected item
+        document.querySelectorAll('.vehicle-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.vehicle-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
     </script>
 </body>
 </html>
+

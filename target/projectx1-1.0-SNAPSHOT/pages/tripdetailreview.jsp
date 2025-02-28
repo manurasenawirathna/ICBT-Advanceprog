@@ -11,10 +11,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trip Summary</title>
+
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="../css/tripdetailreview.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for session storage -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+
+    <!-- Fullscreen Video Background -->
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="../videos/test889.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Trip Summary Container -->
     <div class="summary-container">
         <h2>Trip Summary</h2>
         
@@ -29,7 +43,7 @@
         </div>
 
         <button id="confirm-btn" class="confirm-btn" onclick="confirmTrip()">Confirm & Proceed</button>
-        
+
         <div id="loading-animation" class="loader" style="display: none;"></div>
         <p id="loading-text" style="display: none;">Processing your booking...</p>
     </div>
@@ -37,12 +51,12 @@
     <script>
         // Generate a random Trip Code
         function generateTripCode() {
-            return "TRIP" + Math.floor(Math.random() * 900000 + 100000); // Random 6-digit trip code
+            return "TRIP" + Math.floor(Math.random() * 900000 + 100000);
         }
 
         // Retrieve booking details from session storage and display them
         $(document).ready(function() {
-            $("#tripCode").text(generateTripCode());  // Auto-generate trip code
+            $("#tripCode").text(generateTripCode());
             $("#passengerName").text(sessionStorage.getItem("passengerName") || "John Doe");
             $("#pickupLocation").text(sessionStorage.getItem("pickupLocation") || "Not Selected");
             $("#dropLocation").text(sessionStorage.getItem("dropLocation") || "Not Selected");
@@ -53,14 +67,15 @@
 
         // 5-second delay before redirecting
         function confirmTrip() {
-            document.getElementById("confirm-btn").disabled = true; // Disable button
-            document.getElementById("loading-animation").style.display = "block"; // Show animation
-            document.getElementById("loading-text").style.display = "block"; // Show loading text
+            document.getElementById("confirm-btn").disabled = true;
+            document.getElementById("loading-animation").style.display = "block";
+            document.getElementById("loading-text").style.display = "block";
 
             setTimeout(function () {
-                window.location.href = "bookingconfirm.jsp"; // Redirect after 5 sec
+                window.location.href = "bookingconfirm.jsp";
             }, 5000);
         }
     </script>
 </body>
 </html>
+
