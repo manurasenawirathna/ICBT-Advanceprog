@@ -14,21 +14,27 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/registerstyle.css">
     <script>
         window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('success')) {
-                alert("✅ Registration successful!");
-            }
-            if (urlParams.has('error')) {
-                alert("❌ Registration failed. Please try again.");
-            }
-        };
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Show alerts only if the form was submitted (check for the referrer)
+    if (document.referrer.includes("register")) {
+        if (urlParams.has('success')) {
+            alert("✅ Registration successful!");
+        }
+        if (urlParams.has('error')) {
+            alert("❌ Registration failed. Please try again.");
+        }
+    }
+};
+
     </script>
 </head>
 <body>
 
     <div class="register-container">
         <h2>Create a New Account</h2>
-        <form action="/projectx1/register" method="post">
+        <form action="${pageContext.request.contextPath}/register" method="post">
+
             
             <div class="name-group">
                 <div class="input-group half">
