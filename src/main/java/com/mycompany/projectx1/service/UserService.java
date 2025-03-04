@@ -14,7 +14,13 @@ public class UserService {
         User user = new User(0, firstName, lastName, username, email, phoneNumber, password, null);
         return userDAO.insertUser(user);
     }
+
+    // ✅ New method to call DAO for login verification
+    public User getUserByEmailAndPassword(String email, String password) {
+        return userDAO.getUserByEmailAndPassword(email, password);
+    }
 }
+
 
 
 

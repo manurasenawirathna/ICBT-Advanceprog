@@ -16,10 +16,8 @@ public class UserDAO {
         String sql = "INSERT INTO users (first_name, last_name, username, email, phone_number, password) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
-            // ✅ Explicitly Load MySQL JDBC Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // ✅ Establish Connection
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
                  PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -31,22 +29,45 @@ public class UserDAO {
                 stmt.setString(6, user.getPassword());
 
                 int rowsInserted = stmt.executeUpdate();
-                if (rowsInserted > 0) {
-                    System.out.println("✅ SUCCESS: User registered!");
-                    return true;
-                } else {
-                    System.out.println("❌ ERROR: No rows inserted.");
-                    return false;
-                }
+                return rowsInserted > 0;
             }
-        } catch (ClassNotFoundException e) {
-            System.err.println("❌ ERROR: MySQL JDBC Driver not found!");
-            e.printStackTrace();
-            return false;
-        } catch (SQLException e) {
-            System.err.println("❌ SQL ERROR: " + e.getMessage());
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    // ✅ New method to check if a user exists for login
+    public User getUserByEmailAndPassword(String email, String password) {
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Ensure MySQL driver is loaded
+            
+            try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setString(1, email);
+                stmt.setString(2, password);
+
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    return new User(
+                        rs.getInt("id"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("phone_number"),
+                        rs.getString("password"),
+                        rs.getTimestamp("created_at")
+                    );
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

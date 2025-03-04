@@ -12,6 +12,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - ProjectX1</title>
     <link rel="stylesheet" type="text/css" href="../css/loginstyle.css">
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if (document.referrer.includes("login")) {
+                if (urlParams.has('success')) {
+                    alert("✅ Login successful!");
+                }
+                if (urlParams.has('error')) {
+                    alert("❌ Invalid email or password. Please try again.");
+                }
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="login-container">
@@ -31,4 +46,5 @@
     </div>
 </body>
 </html>
+
 

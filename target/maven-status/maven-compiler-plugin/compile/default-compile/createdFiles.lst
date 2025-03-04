@@ -1,5 +1,6 @@
 com\mycompany\projectx1\model\User.class
 com\mycompany\projectx1\util\DBTest.class
+com\mycompany\projectx1\controller\LoginUserController.class
 com\mycompany\projectx1\controller\RegisterUserController.class
 com\mycompany\projectx1\dao\UserDAO.class
 com\mycompany\projectx1\resources\JakartaEE8Resource.class
