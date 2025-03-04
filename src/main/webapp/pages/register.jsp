@@ -1,6 +1,6 @@
 <%-- 
     Document   : register.jsp
-    Created on : Feb 20, 2025, 5:45:35 PM
+    Created on : Feb 20, 2025, 5:45:35â¯PM
     Author     : manur
 --%>
 
@@ -19,10 +19,10 @@
     // Show alerts only if the form was submitted (check for the referrer)
     if (document.referrer.includes("register")) {
         if (urlParams.has('success')) {
-            alert("✅ Registration successful!");
+            alert("â Registration successful!");
         }
         if (urlParams.has('error')) {
-            alert("❌ Registration failed. Please try again.");
+            alert("â Registration failed. Please try again.");
         }
     }
 };

@@ -15,28 +15,34 @@ public class UserDAO {
     public boolean insertUser(User user) {
         String sql = "INSERT INTO users (first_name, last_name, username, email, phone_number, password) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try {
+            // ✅ Explicitly Load MySQL JDBC Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            stmt.setString(1, user.getFirstName());
-            stmt.setString(2, user.getLastName());
-            stmt.setString(3, user.getUsername());
-            stmt.setString(4, user.getEmail());
-            stmt.setString(5, user.getPhoneNumber());
-            stmt.setString(6, user.getPassword());
+            // ✅ Establish Connection
+            try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            // Print final SQL query for debugging
-            System.out.println("Executing SQL: " + stmt.toString());
+                stmt.setString(1, user.getFirstName());
+                stmt.setString(2, user.getLastName());
+                stmt.setString(3, user.getUsername());
+                stmt.setString(4, user.getEmail());
+                stmt.setString(5, user.getPhoneNumber());
+                stmt.setString(6, user.getPassword());
 
-            int rowsInserted = stmt.executeUpdate();
-
-            if (rowsInserted > 0) {
-                System.out.println("✅ SUCCESS: User registered!");
-                return true;
-            } else {
-                System.out.println("❌ ERROR: No rows inserted.");
-                return false;
+                int rowsInserted = stmt.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("✅ SUCCESS: User registered!");
+                    return true;
+                } else {
+                    System.out.println("❌ ERROR: No rows inserted.");
+                    return false;
+                }
             }
+        } catch (ClassNotFoundException e) {
+            System.err.println("❌ ERROR: MySQL JDBC Driver not found!");
+            e.printStackTrace();
+            return false;
         } catch (SQLException e) {
             System.err.println("❌ SQL ERROR: " + e.getMessage());
             e.printStackTrace();

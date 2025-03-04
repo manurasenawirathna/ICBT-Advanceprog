@@ -26,12 +26,17 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- ✅ FIX: Move MySQL Connector inside <dependencies> -->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.0.33</version>
-        </dependency>
+        
+        
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.33</version>  <!-- Ensure this matches your installed MySQL version -->
+    </dependency>
+
+
+        
+        
     </dependencies>  <!-- ✅ Ensure this closing tag exists -->
 
     <!-- ✅ Ensure <build> is after <dependencies> -->
