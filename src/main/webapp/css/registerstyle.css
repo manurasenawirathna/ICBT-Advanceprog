@@ -1,64 +1,136 @@
-/* Modern, attractive registration form styling */
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background Styling */
 body {
-    font-family: 'Arial', sans-serif;
     background: linear-gradient(to right, #ff9a9e, #fad0c4);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
+    padding: 20px;
 }
 
+/* Registration Form */
 .register-container {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15); /* Transparent effect */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
-    width: 400px;
+    width: 420px;
+    backdrop-filter: blur(12px); /* Frosted glass effect */
+    position: relative;
 }
 
+/* Form Heading */
 h2 {
-    color: #333;
-    margin-bottom: 20px;
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: 600;
 }
 
+/* Input Group */
 .input-group {
     text-align: left;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .input-group label {
     display: block;
-    font-weight: bold;
-    color: #555;
+    font-weight: 500;
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
+/* Split Name Fields */
+.name-group {
+    display: flex;
+    gap: 10px;
+}
+
+.name-group .half {
+    width: 48%;
+}
+
+/* Input Fields */
 .input-group input {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
+/* Placeholder Styling */
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile Number Styling */
+.phone-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 6px 10px;
+    width: 100%;
+}
+
+.phone-container .flag {
+    width: 20px;
+    height: 14px;
+    margin-right: 8px;
+}
+
+.phone-container .country-code {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-right: 8px;
+}
+
+.phone-container input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+    padding: 6px;
+    width: 100px; /* Smaller width for phone number input */
+}
+
+/* Button Styling */
 .register-btn {
     width: 100%;
     background: #FF6F61;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 18px;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-weight: 500;
 }
 
 .register-btn:hover {
     background: #e65b54;
 }
 
+/* Login Link */
 .login-link {
     margin-top: 15px;
     font-size: 14px;
