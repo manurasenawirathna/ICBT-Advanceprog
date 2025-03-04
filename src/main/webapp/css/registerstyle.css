@@ -6,123 +6,114 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Background Styling */
+/* Background */
 body {
     background: linear-gradient(to right, #ff9a9e, #fad0c4);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
-    padding: 20px;
+    padding: 10px;
 }
 
-/* Registration Form */
+/* Container */
 .register-container {
-    background: rgba(255, 255, 255, 0.15); /* Transparent effect */
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 420px;
-    backdrop-filter: blur(12px); /* Frosted glass effect */
-    position: relative;
+    width: 360px;
+    backdrop-filter: blur(10px);
 }
 
-/* Form Heading */
+/* Heading */
 h2 {
     color: #fff;
-    margin-bottom: 15px;
-    font-size: 22px;
-    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 18px;
 }
 
 /* Input Group */
 .input-group {
     text-align: left;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .input-group label {
     display: block;
-    font-weight: 500;
+    font-size: 12px;
     color: #fff;
-    font-size: 14px;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
-/* Split Name Fields */
+/* Input Fields */
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Placeholder */
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Name Fields */
 .name-group {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .name-group .half {
     width: 48%;
 }
 
-/* Input Fields */
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-/* Placeholder Styling */
-.input-group input::placeholder {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-/* Mobile Number Styling */
+/* Phone Input */
 .phone-container {
     display: flex;
     align-items: center;
     background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    padding: 6px 10px;
-    width: 100%;
+    border-radius: 4px;
+    padding: 5px;
 }
 
 .phone-container .flag {
-    width: 20px;
-    height: 14px;
-    margin-right: 8px;
+    width: 16px;
+    height: 12px;
+    margin-right: 6px;
 }
 
 .phone-container .country-code {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: #fff;
-    margin-right: 8px;
+    margin-right: 6px;
 }
 
 .phone-container input {
     flex: 1;
     border: none;
-    outline: none;
     background: transparent;
     color: #fff;
-    font-size: 14px;
-    padding: 6px;
-    width: 100px; /* Smaller width for phone number input */
+    font-size: 12px;
+    padding: 5px;
 }
 
-/* Button Styling */
+/* Button */
 .register-btn {
     width: 100%;
     background: #FF6F61;
     color: white;
     border: none;
-    padding: 12px;
-    border-radius: 6px;
-    font-size: 16px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
     cursor: pointer;
-    transition: background 0.3s ease;
     font-weight: 500;
 }
 
@@ -132,8 +123,8 @@ h2 {
 
 /* Login Link */
 .login-link {
-    margin-top: 15px;
-    font-size: 14px;
+    margin-top: 12px;
+    font-size: 12px;
 }
 
 .login-link a {
