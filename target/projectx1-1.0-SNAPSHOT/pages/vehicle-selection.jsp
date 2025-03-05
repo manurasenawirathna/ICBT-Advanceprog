@@ -12,12 +12,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Vehicle</title>
-    
+
     <!-- Google Fonts (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" type="text/css" href="../css/vehiclestyle.css">
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
 </head>
@@ -87,21 +87,19 @@
         document.getElementById("distanceDisplay").innerText = sessionStorage.getItem("distance") ? sessionStorage.getItem("distance") + " km" : "0 km";
 
         function saveTripDetails(event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
-            let passengerName = prompt("Enter Passenger Name:", "John Doe"); 
             let selectedVehicle = document.querySelector('input[name="vehicle"]:checked');
-            
+
             if (!selectedVehicle) {
                 alert("Please select a vehicle!");
                 return;
             }
 
             let vehicleType = selectedVehicle.value;
-            let distance = sessionStorage.getItem("distance") || "0"; 
+            let distance = sessionStorage.getItem("distance") || "0";
             let estimatedFare = calculateFare(vehicleType, distance);
 
-            sessionStorage.setItem("passengerName", passengerName);
             sessionStorage.setItem("selectedVehicle", vehicleType);
             sessionStorage.setItem("estimatedFare", estimatedFare);
 
@@ -113,7 +111,6 @@
             return (rates[vehicle] * parseFloat(distance)).toFixed(2);
         }
 
-        // Add black border to selected item
         document.querySelectorAll('.vehicle-card').forEach(card => {
             card.addEventListener('click', function() {
                 document.querySelectorAll('.vehicle-card').forEach(c => c.classList.remove('selected'));

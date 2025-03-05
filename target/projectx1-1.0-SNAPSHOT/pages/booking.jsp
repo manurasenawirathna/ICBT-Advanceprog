@@ -46,7 +46,7 @@
 
     <script>
         function saveSessionData(event) {
-            event.preventDefault(); // Prevents default form submission
+            event.preventDefault(); 
             
             let pickup = document.getElementById("pickup").value;
             let drop = document.getElementById("drop").value;
@@ -57,7 +57,6 @@
                 sessionStorage.setItem("drop", drop);
                 sessionStorage.setItem("distance", distance);
                 
-                // Redirect to vehicle-selection.jsp
                 window.location.href = "vehicle-selection.jsp";
             } else {
                 alert("Please fill all the details before proceeding.");
@@ -66,4 +65,3 @@
     </script>
 </body>
 </html>
-
