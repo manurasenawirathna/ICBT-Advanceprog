@@ -5,6 +5,7 @@
 --%>
 
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +32,12 @@
     <!-- Vehicle Selection Container -->
     <div class="vehicle-container">
         <h2>Select Your Vehicle</h2>
+
+        <!-- Display Pickup, Drop, and Distance -->
+        <p><strong>Pickup Address:</strong> <span id="pickupDisplay">Loading...</span></p>
+        <p><strong>Drop Location:</strong> <span id="dropDisplay">Loading...</span></p>
+        <p><strong>Total Distance:</strong> <span id="distanceDisplay">0 km</span></p>
+
         <form onsubmit="saveTripDetails(event)">
             <div class="vehicle-options">
                 <label class="vehicle-card">
@@ -74,6 +81,11 @@
     </div>
 
     <script>
+        // Retrieve and Display Session Data
+        document.getElementById("pickupDisplay").innerText = sessionStorage.getItem("pickup") || "Not Provided";
+        document.getElementById("dropDisplay").innerText = sessionStorage.getItem("drop") || "Not Provided";
+        document.getElementById("distanceDisplay").innerText = sessionStorage.getItem("distance") ? sessionStorage.getItem("distance") + " km" : "0 km";
+
         function saveTripDetails(event) {
             event.preventDefault(); 
 
@@ -86,7 +98,7 @@
             }
 
             let vehicleType = selectedVehicle.value;
-            let distance = sessionStorage.getItem("totalDistance") || "0"; 
+            let distance = sessionStorage.getItem("distance") || "0"; 
             let estimatedFare = calculateFare(vehicleType, distance);
 
             sessionStorage.setItem("passengerName", passengerName);
@@ -111,4 +123,3 @@
     </script>
 </body>
 </html>
-

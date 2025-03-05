@@ -5,6 +5,7 @@
 --%>
 
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +25,9 @@
 
     <!-- Booking Form -->
     <div class="booking-container">
-        <h2>Enter Your Ride Details</h2>
-        <form action="vehicle-selection.jsp" method="get">
+        <h2>Good Day Manura!</h2>
+        <h3>Enter Your Ride Details</h3>
+        <form action="vehicle-selection.jsp" method="post" onsubmit="saveSessionData(event)">
             <div class="input-group">
                 <label for="pickup"><i class="fas fa-map-marker-alt"></i> Pickup Address:</label>
                 <input type="text" id="pickup" name="pickup" placeholder="Enter pickup location" required>
@@ -34,9 +36,34 @@
                 <label for="drop"><i class="fas fa-map-marker-alt"></i> Drop Location:</label>
                 <input type="text" id="drop" name="drop" placeholder="Enter drop-off location" required>
             </div>
+            <div class="input-group">
+                <label for="distance"><i class="fas fa-road"></i> Total Kms to Destination:</label>
+                <input type="number" id="distance" name="distance" placeholder="Enter total distance" required>
+            </div>
             <button type="submit" class="next-btn">Next: Select Vehicle</button>
         </form>
     </div>
 
+    <script>
+        function saveSessionData(event) {
+            event.preventDefault(); // Prevents default form submission
+            
+            let pickup = document.getElementById("pickup").value;
+            let drop = document.getElementById("drop").value;
+            let distance = document.getElementById("distance").value;
+
+            if (pickup && drop && distance) {
+                sessionStorage.setItem("pickup", pickup);
+                sessionStorage.setItem("drop", drop);
+                sessionStorage.setItem("distance", distance);
+                
+                // Redirect to vehicle-selection.jsp
+                window.location.href = "vehicle-selection.jsp";
+            } else {
+                alert("Please fill all the details before proceeding.");
+            }
+        }
+    </script>
 </body>
 </html>
+

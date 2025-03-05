@@ -1,8 +1,9 @@
-/* Reset Styles */
+/* Apply Poppins font globally */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Fullscreen Video Background */
@@ -12,19 +13,19 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    object-fit: cover; /* Ensures video covers the entire screen */
-    z-index: -1; /* Sends video behind the booking form */
+    object-fit: cover;
+    z-index: -1;
 }
 
 /* Booking Form Styling */
 .booking-container {
-    background: rgba(255, 255, 255, 0.15); /* Transparent effect */
+    background: rgba(255, 255, 255, 0.15); 
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     width: 400px;
-    backdrop-filter: blur(12px); /* Adds a frosted glass effect */
+    backdrop-filter: blur(12px);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -32,23 +33,34 @@
     z-index: 1;
 }
 
+/* Greeting Message */
+.greeting {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
 /* Form Heading */
 h2 {
     color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 /* Input Group */
 .input-group {
     text-align: left;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .input-group label {
     display: block;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 500;
     color: #fff;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 /* Input Fields */
@@ -59,7 +71,7 @@ h2 {
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Placeholder Styling */
@@ -73,11 +85,12 @@ h2 {
     background: #ff9800;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 18px;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-weight: 500;
 }
 
 .next-btn:hover {
