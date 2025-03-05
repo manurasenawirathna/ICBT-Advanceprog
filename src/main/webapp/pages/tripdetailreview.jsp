@@ -57,11 +57,11 @@
         // Retrieve booking details from session storage and display them
         $(document).ready(function() {
             $("#tripCode").text(generateTripCode());
-            $("#passengerName").text(sessionStorage.getItem("passengerName") || "John Doe");
-            $("#pickupLocation").text(sessionStorage.getItem("pickupLocation") || "Not Selected");
-            $("#dropLocation").text(sessionStorage.getItem("dropLocation") || "Not Selected");
+            $("#passengerName").text(sessionStorage.getItem("passengerName") || ""); // Keep Passenger Name Blank
+            $("#pickupLocation").text(sessionStorage.getItem("pickup") || "Not Provided"); 
+            $("#dropLocation").text(sessionStorage.getItem("drop") || "Not Provided"); 
+            $("#totalDistance").text(sessionStorage.getItem("distance") ? sessionStorage.getItem("distance") + " km" : "Calculating...");
             $("#selectedVehicle").text(sessionStorage.getItem("selectedVehicle") || "Not Selected");
-            $("#totalDistance").text(sessionStorage.getItem("totalDistance") || "Calculating...");
             $("#estimatedFare").text("LKR " + (sessionStorage.getItem("estimatedFare") || "0.00"));
         });
 
@@ -78,4 +78,3 @@
     </script>
 </body>
 </html>
-
