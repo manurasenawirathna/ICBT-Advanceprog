@@ -42,7 +42,16 @@
             <p><b>Estimated Fare:</b> <span id="estimatedFare"></span></p>
         </div>
 
-        <button id="confirm-btn" class="confirm-btn" onclick="confirmTrip()">Confirm & Proceed</button>
+        <form action="../confirmTrip" method="post">
+            <input type="hidden" name="tripId" id="tripId">
+            <input type="hidden" name="passengerName" id="passengerNameInput">
+            <input type="hidden" name="pickupLocation" id="pickupLocationInput">
+            <input type="hidden" name="dropLocation" id="dropLocationInput">
+            <input type="hidden" name="selectedVehicle" id="selectedVehicleInput">
+            <input type="hidden" name="totalDistance" id="totalDistanceInput">
+            <input type="hidden" name="estimatedFare" id="estimatedFareInput">
+            <button type="submit" id="confirm-btn" class="confirm-btn">Confirm & Proceed</button>
+        </form>
 
         <div id="loading-animation" class="loader" style="display: none;"></div>
         <p id="loading-text" style="display: none;">Processing your booking...</p>
@@ -56,25 +65,32 @@
 
         // Retrieve booking details from session storage and display them
         $(document).ready(function() {
-            $("#tripCode").text(generateTripCode());
-            $("#passengerName").text(sessionStorage.getItem("passengerName") || ""); // Keep Passenger Name Blank
-            $("#pickupLocation").text(sessionStorage.getItem("pickup") || "Not Provided"); 
-            $("#dropLocation").text(sessionStorage.getItem("drop") || "Not Provided"); 
-            $("#totalDistance").text(sessionStorage.getItem("distance") ? sessionStorage.getItem("distance") + " km" : "Calculating...");
-            $("#selectedVehicle").text(sessionStorage.getItem("selectedVehicle") || "Not Selected");
-            $("#estimatedFare").text("LKR " + (sessionStorage.getItem("estimatedFare") || "0.00"));
+            let tripCode = generateTripCode();
+            let passengerName = sessionStorage.getItem("passengerName") || ""; // Keep Passenger Name Blank
+            let pickupLocation = sessionStorage.getItem("pickup") || "Not Provided";
+            let dropLocation = sessionStorage.getItem("drop") || "Not Provided";
+            let totalDistance = sessionStorage.getItem("distance") ? sessionStorage.getItem("distance") + " km" : "Calculating...";
+            let selectedVehicle = sessionStorage.getItem("selectedVehicle") || "Not Selected";
+            let estimatedFare = "LKR " + (sessionStorage.getItem("estimatedFare") || "0.00");
+
+            // Display in UI
+            $("#tripCode").text(tripCode);
+            $("#passengerName").text(passengerName);
+            $("#pickupLocation").text(pickupLocation);
+            $("#dropLocation").text(dropLocation);
+            $("#totalDistance").text(totalDistance);
+            $("#selectedVehicle").text(selectedVehicle);
+            $("#estimatedFare").text(estimatedFare);
+
+            // Assign values to form fields for backend processing
+            $("#tripId").val(tripCode);
+            $("#passengerNameInput").val(passengerName);
+            $("#pickupLocationInput").val(pickupLocation);
+            $("#dropLocationInput").val(dropLocation);
+            $("#totalDistanceInput").val(sessionStorage.getItem("distance") || "0");
+            $("#selectedVehicleInput").val(selectedVehicle);
+            $("#estimatedFareInput").val(sessionStorage.getItem("estimatedFare") || "0");
         });
-
-        // 5-second delay before redirecting
-        function confirmTrip() {
-            document.getElementById("confirm-btn").disabled = true;
-            document.getElementById("loading-animation").style.display = "block";
-            document.getElementById("loading-text").style.display = "block";
-
-            setTimeout(function () {
-                window.location.href = "bookingconfirm.jsp";
-            }, 5000);
-        }
     </script>
 </body>
 </html>
