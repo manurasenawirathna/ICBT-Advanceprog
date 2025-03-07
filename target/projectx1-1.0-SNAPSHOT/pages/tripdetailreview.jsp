@@ -42,7 +42,8 @@
             <p><b>Estimated Fare:</b> <span id="estimatedFare"></span></p>
         </div>
 
-        <form action="../confirmTrip" method="post">
+        <!-- Form to submit trip details -->
+        <form action="../confirmTrip" method="post" id="tripForm">
             <input type="hidden" name="tripId" id="tripId">
             <input type="hidden" name="passengerName" id="passengerNameInput">
             <input type="hidden" name="pickupLocation" id="pickupLocationInput">
@@ -91,6 +92,21 @@
             $("#selectedVehicleInput").val(selectedVehicle);
             $("#estimatedFareInput").val(sessionStorage.getItem("estimatedFare") || "0");
         });
+
+        // Ensure the form is submitting correctly with proper delay
+        $("#confirm-btn").click(function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            $("#confirm-btn").prop("disabled", true); // Disable button to prevent multiple clicks
+            $("#loading-animation").show();
+            $("#loading-text").show();
+
+            // Submit the form after a delay to allow UI to update
+            setTimeout(function () {
+                $("#tripForm").submit();
+            }, 2000);
+        });
     </script>
+
 </body>
 </html>
