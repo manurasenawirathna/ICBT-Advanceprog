@@ -45,12 +45,12 @@ public class ConfirmTripController extends HttpServlet {
         double totalDistance = Double.parseDouble(totalDistanceStr);
         double estimatedFare = Double.parseDouble(estimatedFareStr);
 
-        // ✅ Assign a Driver Based on Vehicle Type
+        // ✅ Fetch Driver Based on Correct Vehicle Type
         Driver driver = driverService.getDriverByVehicleType(selectedVehicle);
 
         if (driver == null) {
             System.out.println("❌ ERROR: No driver available for " + selectedVehicle);
-            driver = new Driver("Not Assigned", "0000000000", "Unknown Model", "Unknown Color", "XXXXXX"); // Placeholder driver
+            driver = new Driver("Not Assigned", "0000000000", "Unknown Model", "Unknown Color", "XXXXXX", selectedVehicle); // ✅ Ensure fallback driver still holds vehicle type
         }
 
         session.setAttribute("driver", driver);
@@ -62,12 +62,13 @@ public class ConfirmTripController extends HttpServlet {
 
         if (isConfirmed) {
             System.out.println("✅ Trip successfully saved in DB!");
-            response.sendRedirect("pages/bookingconfirm.jsp?success=1");
+            response.sendRedirect("pages/bookingconfirm.jsp?tripId=" + tripId);
         } else {
             System.out.println("❌ ERROR: Trip not saved in DB!");
             response.sendRedirect("pages/tripdetailreview.jsp?error=1");
         }
     }
 }
+
 
 

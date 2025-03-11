@@ -13,7 +13,7 @@ public class DriverDAO {
     private static final String PASSWORD = "Log@12345";
 
     public Driver getDriverByVehicleType(String selectedVehicle) {
-        String sql = "SELECT * FROM driver_base WHERE vehicle_model = ? ORDER BY RAND() LIMIT 1";
+        String sql = "SELECT * FROM driver_base WHERE vehicle_type = ? ORDER BY RAND() LIMIT 1"; // ✅ Change from vehicle_model to vehicle_type
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -27,7 +27,8 @@ public class DriverDAO {
                         rs.getString("contact_number"),
                         rs.getString("vehicle_model"),
                         rs.getString("vehicle_color"),
-                        rs.getString("vehicle_number")
+                        rs.getString("vehicle_number"),
+                        rs.getString("vehicle_type") // ✅ Ensure this exists in Driver class
                 );
             }
         } catch (SQLException e) {
@@ -36,4 +37,5 @@ public class DriverDAO {
         return null;
     }
 }
+
 

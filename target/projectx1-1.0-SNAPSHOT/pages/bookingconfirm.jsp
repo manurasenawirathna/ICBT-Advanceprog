@@ -28,18 +28,27 @@
         <%
             Driver driver = (Driver) session.getAttribute("driver");
             String tripId = request.getParameter("tripId");
+
+            if (driver == null) {
+                driver = new Driver("Not Assigned", "0000000000", "Unknown Model", "Unknown Color", "XXXXXX", "Unknown");
+            }
         %>
 
         <div id="driver-info">
-            <p><b>Driver Name:</b> <%= driver != null ? driver.getDriverName() : "Not Available" %></p>
-            <p><b>Contact Number:</b> <%= driver != null ? driver.getContactNumber() : "Not Available" %></p>
-            <p><b>Vehicle Model:</b> <%= driver != null ? driver.getVehicleModel() : "Not Available" %></p>
-            <p><b>Vehicle Color:</b> <%= driver != null ? driver.getVehicleColor() : "Not Available" %></p>
-            <p><b>Vehicle Number:</b> <%= driver != null ? driver.getVehicleNumber() : "Not Available" %></p>
+            <p><b>Driver Name:</b> <%= driver.getDriverName() %></p>
+            <p><b>Contact Number:</b> <%= driver.getContactNumber() %></p>
+            <p><b>Vehicle Model:</b> <%= driver.getVehicleModel() %></p>
+            <p><b>Vehicle Color:</b> <%= driver.getVehicleColor() %></p>
+            <p><b>Vehicle Number:</b> <%= driver.getVehicleNumber() %></p>
         </div>
 
         <form action="../bookingConfirm" method="post">
             <input type="hidden" name="tripId" value="<%= tripId %>">
+            <input type="hidden" name="driverName" value="<%= driver.getDriverName() %>">
+            <input type="hidden" name="contactNumber" value="<%= driver.getContactNumber() %>">
+            <input type="hidden" name="vehicleModel" value="<%= driver.getVehicleModel() %>">
+            <input type="hidden" name="vehicleColor" value="<%= driver.getVehicleColor() %>">
+            <input type="hidden" name="vehicleNumber" value="<%= driver.getVehicleNumber() %>">
             <button type="submit" name="action" value="done" class="confirm-btn">Done</button>
             <button type="submit" name="action" value="cancel" class="cancel-btn">Cancel</button>
         </form>
@@ -47,3 +56,4 @@
 
 </body>
 </html>
+
