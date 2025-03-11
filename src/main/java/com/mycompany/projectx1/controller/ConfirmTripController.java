@@ -45,28 +45,19 @@ public class ConfirmTripController extends HttpServlet {
         double totalDistance = Double.parseDouble(totalDistanceStr);
         double estimatedFare = Double.parseDouble(estimatedFareStr);
 
-        // ✅ Debugging: Log the retrieved data
-        System.out.println("📢 TRIP CONFIRMATION RECEIVED:");
-        System.out.println("Trip ID: " + tripId);
-        System.out.println("Passenger Name: " + passengerName);
-        System.out.println("Pickup Location: " + pickupLocation);
-        System.out.println("Drop Location: " + dropLocation);
-        System.out.println("Selected Vehicle: " + selectedVehicle);
-        System.out.println("Total Distance: " + totalDistance);
-        System.out.println("Estimated Fare: " + estimatedFare);
-
         // ✅ Assign a Driver Based on Vehicle Type
         Driver driver = driverService.getDriverByVehicleType(selectedVehicle);
 
-        if (driver != null) {
-            session.setAttribute("driver", driver);
-            System.out.println("✅ Driver Assigned: " + driver.getDriverName());
-        } else {
+        if (driver == null) {
             System.out.println("❌ ERROR: No driver available for " + selectedVehicle);
+            driver = new Driver("Not Assigned", "0000000000", "Unknown Model", "Unknown Color", "XXXXXX"); // Placeholder driver
         }
 
+        session.setAttribute("driver", driver);
+
         // ✅ Save Trip Details to the Database
-        ConfirmedTrip trip = new ConfirmedTrip(tripId, passengerName, pickupLocation, dropLocation, selectedVehicle, totalDistance, estimatedFare);
+        ConfirmedTrip trip = new ConfirmedTrip(tripId, passengerName, pickupLocation, dropLocation, selectedVehicle, totalDistance, estimatedFare, driver.getDriverName(), driver.getContactNumber(), driver.getVehicleModel(), driver.getVehicleColor(), driver.getVehicleNumber());
+
         boolean isConfirmed = confirmedTripService.saveConfirmedTrip(trip);
 
         if (isConfirmed) {
@@ -78,4 +69,5 @@ public class ConfirmTripController extends HttpServlet {
         }
     }
 }
+
 

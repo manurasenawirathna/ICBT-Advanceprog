@@ -14,10 +14,15 @@ public class ConfirmedTrip {
     private String selectedVehicle;
     private double totalDistance;
     private double estimatedFare;
+    private String driverName;
+    private String contactNumber;
+    private String vehicleModel;
+    private String vehicleColor;
+    private String vehicleNumber;
     private Timestamp createdAt;
 
     // Constructor
-    public ConfirmedTrip(String tripId, String passengerName, String pickupLocation, String dropLocation, String selectedVehicle, double totalDistance, double estimatedFare) {
+    public ConfirmedTrip(String tripId, String passengerName, String pickupLocation, String dropLocation, String selectedVehicle, double totalDistance, double estimatedFare, String driverName, String contactNumber, String vehicleModel, String vehicleColor, String vehicleNumber) {
         this.tripId = tripId;
         this.passengerName = passengerName;
         this.pickupLocation = pickupLocation;
@@ -25,6 +30,11 @@ public class ConfirmedTrip {
         this.selectedVehicle = selectedVehicle;
         this.totalDistance = totalDistance;
         this.estimatedFare = estimatedFare;
+        this.driverName = driverName;
+        this.contactNumber = contactNumber;
+        this.vehicleModel = vehicleModel;
+        this.vehicleColor = vehicleColor;
+        this.vehicleNumber = vehicleNumber;
     }
 
     // Getters and Setters
@@ -49,7 +59,21 @@ public class ConfirmedTrip {
     public double getEstimatedFare() { return estimatedFare; }
     public void setEstimatedFare(double estimatedFare) { this.estimatedFare = estimatedFare; }
 
+    public String getDriverName() { return driverName; }
+    public void setDriverName(String driverName) { this.driverName = driverName; }
+
+    public String getContactNumber() { return contactNumber; }
+    public void setContactNumber(String contactNumber) { this.contactNumber = contactNumber; }
+
+    public String getVehicleModel() { return vehicleModel; }
+    public void setVehicleModel(String vehicleModel) { this.vehicleModel = vehicleModel; }
+
+    public String getVehicleColor() { return vehicleColor; }
+    public void setVehicleColor(String vehicleColor) { this.vehicleColor = vehicleColor; }
+
+    public String getVehicleNumber() { return vehicleNumber; }
+    public void setVehicleNumber(String vehicleNumber) { this.vehicleNumber = vehicleNumber; }
+
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 }
-

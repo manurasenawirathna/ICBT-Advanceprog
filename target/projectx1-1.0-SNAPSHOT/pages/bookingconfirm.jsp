@@ -1,6 +1,6 @@
 <%-- 
     Document   : bookingconfirm.jsp
-    Created on : Feb 20, 2025, 9:17:29 PM
+    Created on : Feb 20, 2025, 9:17:29â¯PM
     Author     : manur
 --%>
 
@@ -14,7 +14,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmed</title>
-
     <link rel="stylesheet" type="text/css" href="../css/bookingconfirmstyle.css">
 </head>
 <body>
@@ -28,6 +27,7 @@
 
         <%
             Driver driver = (Driver) session.getAttribute("driver");
+            String tripId = request.getParameter("tripId");
         %>
 
         <div id="driver-info">
@@ -36,8 +36,13 @@
             <p><b>Vehicle Model:</b> <%= driver != null ? driver.getVehicleModel() : "Not Available" %></p>
             <p><b>Vehicle Color:</b> <%= driver != null ? driver.getVehicleColor() : "Not Available" %></p>
             <p><b>Vehicle Number:</b> <%= driver != null ? driver.getVehicleNumber() : "Not Available" %></p>
-            <p class="message">Your driver is on the way! Hang tight. 🚗💨</p>
         </div>
+
+        <form action="../bookingConfirm" method="post">
+            <input type="hidden" name="tripId" value="<%= tripId %>">
+            <button type="submit" name="action" value="done" class="confirm-btn">Done</button>
+            <button type="submit" name="action" value="cancel" class="cancel-btn">Cancel</button>
+        </form>
     </div>
 
 </body>

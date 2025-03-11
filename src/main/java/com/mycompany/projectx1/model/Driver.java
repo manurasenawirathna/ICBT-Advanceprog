@@ -14,8 +14,7 @@ public class Driver {
     private String vehicleType;
 
     // Constructor
-    public Driver(int driverId, String driverName, String contactNumber, String vehicleModel,
-                  String vehicleColor, String vehicleNumber, String vehicleType) {
+    public Driver(String driverName, String contactNumber, String vehicleModel, String vehicleColor, String vehicleNumber) {
         this.driverId = driverId;
         this.driverName = driverName;
         this.contactNumber = contactNumber;

@@ -10,7 +10,8 @@ import com.mycompany.projectx1.model.Driver;
 public class DriverService {
     private DriverDAO driverDAO = new DriverDAO();
 
-    public Driver getDriverByVehicleType(String vehicleType) {
-        return driverDAO.findDriverByVehicleType(vehicleType);
+    public Driver getDriverByVehicleType(String selectedVehicle) {
+        return driverDAO.getDriverByVehicleType(selectedVehicle);
     }
 }
+

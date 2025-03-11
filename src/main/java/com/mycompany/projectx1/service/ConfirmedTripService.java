@@ -6,17 +6,18 @@ package com.mycompany.projectx1.service;
 
 import com.mycompany.projectx1.dao.ConfirmedTripDAO;
 import com.mycompany.projectx1.model.ConfirmedTrip;
+import com.mycompany.projectx1.model.Driver;
 
 public class ConfirmedTripService {
     private ConfirmedTripDAO confirmedTripDAO = new ConfirmedTripDAO();
 
-    public boolean saveConfirmedTrip(String tripId, String passengerName, String pickupLocation, String dropLocation, String selectedVehicle, double totalDistance, double estimatedFare) {
-        ConfirmedTrip trip = new ConfirmedTrip(tripId, passengerName, pickupLocation, dropLocation, selectedVehicle, totalDistance, estimatedFare);
-        return confirmedTripDAO.insertConfirmedTrip(trip);
-    }
-
     public boolean saveConfirmedTrip(ConfirmedTrip trip) {
         return confirmedTripDAO.insertConfirmedTrip(trip);
     }
+
+    public boolean updateTripWithDriver(String tripId, Driver driver, String status) {
+        return confirmedTripDAO.updateTripWithDriver(tripId, driver, status);
+    }
 }
+
 
