@@ -11,11 +11,11 @@ header {
     align-items: center;
     background-color: white;
     padding: 12px 40px;
-    border-bottom: 2px solid #d4db1e; /* Yellowish-green bottom border */
+    border-bottom: 2px solid #d4db1e;
 }
 
 .logo img {
-    height: 28px; /* Smaller logo similar to the sample */
+    height: 28px;
 }
 
 nav ul {
@@ -47,7 +47,7 @@ nav ul li a:hover {
     flex-direction: column;
     gap: 4px;
     cursor: pointer;
-    background-color: #d4db1e; /* Yellowish-green */
+    background-color: #d4db1e;
     padding: 8px;
     border-radius: 5px;
 }
@@ -60,16 +60,32 @@ nav ul li a:hover {
     border-radius: 2px;
 }
 
+/* === HERO SECTION (SPLIT SCREEN LAYOUT) === */
 .hero-section {
     display: flex;
+    height: 80vh;
     align-items: center;
-    justify-content: center;
-    padding: 80px 40px;
+    justify-content: space-between;
+    padding: 0;
 }
 
+/* Left side (Image) */
+.hero-image {
+    width: 50%;
+    height: 100%;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right side (Text) */
 .hero-text {
-    max-width: 500px;
-    margin-right: 40px;
+    width: 50%;
+    padding: 50px;
+    text-align: left;
 }
 
 .hero-text h1 {
@@ -99,34 +115,25 @@ nav ul li a:hover {
     background-color: #c3c91c;
 }
 
-.hero-image img {
-    width: 380px;
-    height: auto;
-}
-
-/* Mobile Responsive Design */
+/* Mobile Responsive */
 @media screen and (max-width: 768px) {
-    header {
-        padding: 12px 20px;
-    }
-
-    nav ul {
-        display: none; /* Hide menu items on mobile */
-    }
-
     .hero-section {
         flex-direction: column;
-        text-align: center;
+        height: auto;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 300px;
     }
 
     .hero-text {
-        margin: 0;
-    }
-
-    .hero-image img {
-        width: 300px;
+        width: 100%;
+        text-align: center;
+        padding: 30px;
     }
 }
+
 
 
 

@@ -10,9 +10,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Front Page</title>
+    <title>Home | Book a Ride</title>
     <link rel="stylesheet" type="text/css" href="../css/frontpagestyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -22,15 +21,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">Ride</a></li>
-                <li><a href="#">Drive</a></li>
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Food</a></li>
-                <li><a href="#">Market</a></li>
-                <li><a href="#">Flash</a></li>
-                <li><a href="#">Truck</a></li>
-                <li><a href="#">Last Mile Delivery</a></li>
+                <li><a href="#">Home</a></li>
                 <li><a href="#">Book a Ride</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
         <div class="menu-icon">
@@ -41,18 +35,22 @@
     </header>
 
     <section class="hero-section">
-        <div class="hero-text">
-            <h1>Book Your Ride with Ease</h1>
-            <p>Get a safe and reliable ride at the touch of a button. Choose from a variety of transport options to suit your needs.</p>
-            <button class="cta-button">Book a Ride</button>
-        </div>
+        <!-- Left Side (Image) -->
         <div class="hero-image">
-            <img src="../images/ride-booking.png" alt="Book a Ride">
+            <img src="../videos/x2.jpg" alt="Ride Booking">
+        </div>
+
+        <!-- Right Side (Text) -->
+        <div class="hero-text">
+            <h1>Book Your Ride Easily</h1>
+            <p>Quick, reliable, and affordable rides at your fingertips. Choose your ride and get to your destination with ease.</p>
+            <button class="cta-button">Book Now</button>
         </div>
     </section>
 
 </body>
 </html>
+
 
 
 
