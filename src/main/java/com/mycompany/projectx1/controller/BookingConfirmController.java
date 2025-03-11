@@ -47,7 +47,13 @@ public class BookingConfirmController extends HttpServlet {
 
         if (isUpdated) {
             System.out.println("✅ Trip updated successfully!");
-            response.sendRedirect("pages/bookingconfirm.jsp?success=1");
+
+            // ✅ Redirect based on action
+            if ("done".equals(action)) {
+                response.sendRedirect("pages/pendingtrips.jsp"); // Redirect to pending trips
+            } else {
+                response.sendRedirect("pages/booking.jsp"); // Redirect to booking page
+            }
         } else {
             System.out.println("❌ ERROR: Failed to update trip.");
             response.sendRedirect("pages/bookingconfirm.jsp?error=updateFailed");
