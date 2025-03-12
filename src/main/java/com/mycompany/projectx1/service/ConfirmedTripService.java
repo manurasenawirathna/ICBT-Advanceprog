@@ -9,7 +9,17 @@ import com.mycompany.projectx1.model.ConfirmedTrip;
 import com.mycompany.projectx1.model.Driver;
 
 public class ConfirmedTripService {
-    private ConfirmedTripDAO confirmedTripDAO = new ConfirmedTripDAO();
+    private final ConfirmedTripDAO confirmedTripDAO;
+
+    // ✅ Constructor for Dependency Injection (For Testing)
+    public ConfirmedTripService(ConfirmedTripDAO confirmedTripDAO) {
+        this.confirmedTripDAO = confirmedTripDAO;
+    }
+
+    // ✅ Default constructor for normal use
+    public ConfirmedTripService() {
+        this.confirmedTripDAO = new ConfirmedTripDAO();
+    }
 
     public boolean saveConfirmedTrip(ConfirmedTrip trip) {
         return confirmedTripDAO.insertConfirmedTrip(trip);
@@ -19,5 +29,6 @@ public class ConfirmedTripService {
         return confirmedTripDAO.updateTripWithDriver(tripId, driver, status);
     }
 }
+
 
 

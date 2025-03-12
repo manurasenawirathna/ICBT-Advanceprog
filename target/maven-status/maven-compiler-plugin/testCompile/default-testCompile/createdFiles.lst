@@ -1,3 +1,4 @@
-com\mycompany\projectx1\service\DriverServiceTest.class
 com\mycompany\projectx1\service\Test\UserSentricfetchtipServiceTest.class
+com\mycompany\projectx1\service\DriverServiceTest.class
+com\mycompany\projectx1\service\ConfirmedTripServiceTest.class
 com\mycompany\projectx1\service\Test\UserServiceTest.class
