@@ -15,27 +15,38 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/confirm-booking")
 public class DriverController extends HttpServlet {
-    private DriverService driverService = new DriverService();
+    private DriverService driverService;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    // ✅ Default constructor
+    public DriverController() {
+        this.driverService = new DriverService();
+    }
+
+    // ✅ Constructor for testing
+    public DriverController(DriverService driverService) {
+        this.driverService = driverService;
+    }
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String vehicleType = request.getParameter("vehicle_type"); // Get vehicle type from session
+        String vehicleType = request.getParameter("vehicle_type");
+
         if (vehicleType == null || vehicleType.isEmpty()) {
             response.sendRedirect("error.jsp?error=No vehicle type selected");
             return;
         }
 
-        // Get the driver data from the service layer based on the vehicle type
         Driver driver = driverService.getDriverByVehicleType(vehicleType);
 
         if (driver != null) {
-            // Set the driver data in session
             request.getSession().setAttribute("driver", driver);
-            response.sendRedirect("bookingconfirm.jsp"); // Redirect to the confirmation page
+            response.sendRedirect("bookingconfirm.jsp");  
         } else {
             response.sendRedirect("error.jsp?error=No driver found for selected vehicle type");
         }
     }
 }
+
 

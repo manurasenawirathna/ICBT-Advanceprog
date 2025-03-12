@@ -16,9 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
 public class LoginUserController extends HttpServlet {
-    private UserService userService = new UserService();
+    private UserService userService;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    // ✅ Default constructor
+    public LoginUserController() {
+        this.userService = new UserService();
+    }
+
+    // ✅ Constructor for testing
+    public LoginUserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         String email = request.getParameter("email");
@@ -29,12 +40,13 @@ public class LoginUserController extends HttpServlet {
 
         if (user != null) {
             System.out.println("✅ Login SUCCESS: " + user.getUsername());
-            response.sendRedirect("pages/login.jsp?success=1");  // Redirect to login.jsp with success flag
+            response.sendRedirect("pages/login.jsp?success=1");  
         } else {
             System.out.println("❌ ERROR: Invalid email or password!");
-            response.sendRedirect("pages/login.jsp?error=1");  // Redirect to login.jsp with error flag
+            response.sendRedirect("pages/login.jsp?error=1");  
         }
     }
 }
+
 
 

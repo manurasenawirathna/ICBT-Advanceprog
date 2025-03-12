@@ -18,19 +18,29 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/bookingConfirm")
 public class BookingConfirmController extends HttpServlet {
-    private ConfirmedTripService confirmedTripService = new ConfirmedTripService();
+    private ConfirmedTripService confirmedTripService;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    // ✅ Default constructor
+    public BookingConfirmController() {
+        this.confirmedTripService = new ConfirmedTripService();
+    }
+
+    // ✅ Constructor for testing
+    public BookingConfirmController(ConfirmedTripService confirmedTripService) {
+        this.confirmedTripService = confirmedTripService;
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
         String tripId = request.getParameter("tripId");
-        String action = request.getParameter("action"); // "done" or "cancel"
+        String action = request.getParameter("action");
 
         Driver driver = (Driver) session.getAttribute("driver");
 
         if (driver == null) {
-            System.out.println("❌ ERROR: No driver details found in session.");
             response.sendRedirect("pages/bookingconfirm.jsp?error=nodriver");
             return;
         }
@@ -46,17 +56,14 @@ public class BookingConfirmController extends HttpServlet {
         }
 
         if (isUpdated) {
-            System.out.println("✅ Trip updated successfully!");
-
-            // ✅ Redirect based on action
             if ("done".equals(action)) {
-                response.sendRedirect("pages/pendingtrips.jsp"); // Redirect to pending trips
+                response.sendRedirect("pages/pendingtrips.jsp");
             } else {
-                response.sendRedirect("pages/booking.jsp"); // Redirect to booking page
+                response.sendRedirect("pages/booking.jsp");
             }
         } else {
-            System.out.println("❌ ERROR: Failed to update trip.");
             response.sendRedirect("pages/bookingconfirm.jsp?error=updateFailed");
         }
     }
 }
+

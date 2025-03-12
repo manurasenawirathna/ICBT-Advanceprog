@@ -18,9 +18,20 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/completedTrips")
 public class CompletedTripsController extends HttpServlet {
-    private CompletedTripsService tripService = new CompletedTripsService();
+    private CompletedTripsService tripService;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    // ✅ Default constructor
+    public CompletedTripsController() {
+        this.tripService = new CompletedTripsService();
+    }
+
+    // ✅ Constructor for testing
+    public CompletedTripsController(CompletedTripsService tripService) {
+        this.tripService = tripService;
+    }
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();

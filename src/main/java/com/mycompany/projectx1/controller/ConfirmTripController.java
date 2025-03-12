@@ -19,15 +19,27 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/confirmTrip")
 public class ConfirmTripController extends HttpServlet {
-    private ConfirmedTripService confirmedTripService = new ConfirmedTripService();
-    private DriverService driverService = new DriverService();
+    private ConfirmedTripService confirmedTripService;
+    private DriverService driverService;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    // ✅ Default constructor
+    public ConfirmTripController() {
+        this.confirmedTripService = new ConfirmedTripService();
+        this.driverService = new DriverService();
+    }
+
+    // ✅ Constructor for testing
+    public ConfirmTripController(ConfirmedTripService confirmedTripService, DriverService driverService) {
+        this.confirmedTripService = confirmedTripService;
+        this.driverService = driverService;
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
 
-        // ✅ Retrieve Data from Form Submission
         String tripId = request.getParameter("tripId");
         String passengerName = request.getParameter("passengerName");
         String pickupLocation = request.getParameter("pickupLocation");
@@ -37,7 +49,6 @@ public class ConfirmTripController extends HttpServlet {
         String estimatedFareStr = request.getParameter("estimatedFare");
 
         if (pickupLocation == null || dropLocation == null || totalDistanceStr == null || estimatedFareStr == null || selectedVehicle == null) {
-            System.out.println("❌ ERROR: Missing form data!");
             response.sendRedirect("pages/tripdetailreview.jsp?error=1");
             return;
         }
@@ -45,26 +56,21 @@ public class ConfirmTripController extends HttpServlet {
         double totalDistance = Double.parseDouble(totalDistanceStr);
         double estimatedFare = Double.parseDouble(estimatedFareStr);
 
-        // ✅ Fetch Driver Based on Correct Vehicle Type
         Driver driver = driverService.getDriverByVehicleType(selectedVehicle);
 
         if (driver == null) {
-            System.out.println("❌ ERROR: No driver available for " + selectedVehicle);
-            driver = new Driver("Not Assigned", "0000000000", "Unknown Model", "Unknown Color", "XXXXXX", selectedVehicle); // ✅ Ensure fallback driver still holds vehicle type
+            driver = new Driver("Not Assigned", "0000000000", "Unknown Model", "Unknown Color", "XXXXXX", selectedVehicle);
         }
 
         session.setAttribute("driver", driver);
 
-        // ✅ Save Trip Details to the Database
         ConfirmedTrip trip = new ConfirmedTrip(tripId, passengerName, pickupLocation, dropLocation, selectedVehicle, totalDistance, estimatedFare, driver.getDriverName(), driver.getContactNumber(), driver.getVehicleModel(), driver.getVehicleColor(), driver.getVehicleNumber());
 
         boolean isConfirmed = confirmedTripService.saveConfirmedTrip(trip);
 
         if (isConfirmed) {
-            System.out.println("✅ Trip successfully saved in DB!");
             response.sendRedirect("pages/bookingconfirm.jsp?tripId=" + tripId);
         } else {
-            System.out.println("❌ ERROR: Trip not saved in DB!");
             response.sendRedirect("pages/tripdetailreview.jsp?error=1");
         }
     }
