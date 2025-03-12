@@ -13,18 +13,24 @@ public class Driver {
     private String vehicleNumber;
     private String vehicleType;
 
-    // Constructor
-    public Driver(String driverName, String contactNumber, String vehicleModel, String vehicleColor, String vehicleNumber, String selectedVehicle) {
-        this.driverId = driverId;
-        this.driverName = driverName;
-        this.contactNumber = contactNumber;
-        this.vehicleModel = vehicleModel;
-        this.vehicleColor = vehicleColor;
-        this.vehicleNumber = vehicleNumber;
-        this.vehicleType = vehicleType;
+    // ✅ Corrected Constructor
+   public Driver(String driverName, String contactNumber, String vehicleModel, 
+              String vehicleColor, String vehicleNumber, String vehicleType) {
+    this.driverId = 0; // Default ID if not provided
+    this.driverName = driverName;
+    this.contactNumber = contactNumber;
+    this.vehicleModel = vehicleModel;
+    this.vehicleColor = vehicleColor;
+    this.vehicleNumber = vehicleNumber;
+    this.vehicleType = vehicleType;
+}
+
+
+    // ✅ Default constructor (if needed)
+    public Driver() {
     }
 
-    // Getters and setters
+    // ✅ Getters and Setters
     public int getDriverId() {
         return driverId;
     }
@@ -81,4 +87,5 @@ public class Driver {
         this.vehicleType = vehicleType;
     }
 }
+
 

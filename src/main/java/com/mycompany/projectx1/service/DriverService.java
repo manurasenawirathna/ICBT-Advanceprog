@@ -8,10 +8,21 @@ import com.mycompany.projectx1.dao.DriverDAO;
 import com.mycompany.projectx1.model.Driver;
 
 public class DriverService {
-    private DriverDAO driverDAO = new DriverDAO();
+    private final DriverDAO driverDAO;
+
+    // ✅ Constructor for Dependency Injection (for testing)
+    public DriverService(DriverDAO driverDAO) {
+        this.driverDAO = driverDAO;
+    }
+
+    // ✅ Default constructor for normal use
+    public DriverService() {
+        this.driverDAO = new DriverDAO();
+    }
 
     public Driver getDriverByVehicleType(String selectedVehicle) {
         return driverDAO.getDriverByVehicleType(selectedVehicle);
     }
 }
+
 
