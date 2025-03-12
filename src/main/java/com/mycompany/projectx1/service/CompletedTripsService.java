@@ -9,10 +9,21 @@ import com.mycompany.projectx1.model.ConfirmedTrip;
 import java.util.List;
 
 public class CompletedTripsService {
-    private CompletedTripsDAO tripDAO = new CompletedTripsDAO();
+    private final CompletedTripsDAO tripDAO;
+
+    // ✅ Constructor for Dependency Injection (For Testing)
+    public CompletedTripsService(CompletedTripsDAO tripDAO) {
+        this.tripDAO = tripDAO;
+    }
+
+    // ✅ Default Constructor for Normal Use
+    public CompletedTripsService() {
+        this.tripDAO = new CompletedTripsDAO();
+    }
 
     public List<ConfirmedTrip> getCompletedTrips() {
         return tripDAO.getCompletedTrips();
     }
 }
+
 
