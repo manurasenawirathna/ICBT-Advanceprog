@@ -9,7 +9,17 @@ import com.mycompany.projectx1.model.ConfirmedTrip;
 import java.util.List;
 
 public class UserSentricfetchtipService {
-    private UserSentricfetchtipDAO tripDAO = new UserSentricfetchtipDAO();
+    private final UserSentricfetchtipDAO tripDAO;
+
+    // ✅ Constructor for dependency injection (needed for unit tests)
+    public UserSentricfetchtipService(UserSentricfetchtipDAO tripDAO) {
+        this.tripDAO = tripDAO;
+    }
+
+    // ✅ Default constructor for normal execution
+    public UserSentricfetchtipService() {
+        this.tripDAO = new UserSentricfetchtipDAO();
+    }
 
     public List<ConfirmedTrip> getConfirmedTrips() {
         return tripDAO.getConfirmedTrips();
@@ -19,4 +29,3 @@ public class UserSentricfetchtipService {
         return tripDAO.completeTrip(tripId);
     }
 }
-

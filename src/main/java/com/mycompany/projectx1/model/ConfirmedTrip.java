@@ -37,6 +37,13 @@ public class ConfirmedTrip {
         this.vehicleNumber = vehicleNumber;
     }
 
+    public ConfirmedTrip(String tripId, String driverName, String passengerName) {
+    this.tripId = tripId;
+    this.driverName = driverName;
+    this.passengerName = passengerName;
+}
+
+
     // Getters and Setters
     public String getTripId() { return tripId; }
     public void setTripId(String tripId) { this.tripId = tripId; }
