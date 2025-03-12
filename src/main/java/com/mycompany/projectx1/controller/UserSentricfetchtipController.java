@@ -14,11 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/completeTrip")
 public class UserSentricfetchtipController extends HttpServlet {
-    private UserSentricfetchtipService tripService = new UserSentricfetchtipService();
+    private UserSentricfetchtipService tripService;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    // ✅ Default constructor for production
+    public UserSentricfetchtipController() {
+        this.tripService = new UserSentricfetchtipService();
+    }
+
+    // ✅ Constructor for testing (Injecting mock service)
+    public UserSentricfetchtipController(UserSentricfetchtipService tripService) {
+        this.tripService = tripService;
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String tripId = request.getParameter("tripId");
 
         if (tripId == null || tripId.isEmpty()) {
@@ -29,12 +38,11 @@ public class UserSentricfetchtipController extends HttpServlet {
         boolean isCompleted = tripService.completeTrip(tripId);
 
         if (isCompleted) {
-            System.out.println("✅ Trip marked as Completed!");
             response.sendRedirect("pages/pendingtrips.jsp?success=completed");
         } else {
-            System.out.println("❌ ERROR: Failed to complete trip.");
             response.sendRedirect("pages/pendingtrips.jsp?error=updateFailed");
         }
     }
 }
+
 
